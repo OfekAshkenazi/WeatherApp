@@ -15,7 +15,7 @@ import retrofit2.http.Query;
  */
 
 public interface SkyDarkService {
-    @GET("{lat},{lng}")
+    @GET("{lat},{lng}?extend=hourly&units=ca")
     Call<WeatherInfo> getWeatherByLocation(@Path("lat") String lat, @Path("lng") String lang);
 
 }
