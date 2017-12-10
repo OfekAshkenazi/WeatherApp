@@ -1,6 +1,14 @@
 package DarkSkyService.Entities;
 
+import com.google.gson.annotations.SerializedName;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.SimpleTimeZone;
+import java.util.TimeZone;
 
 /**
  * Created by Ofek on 09-Dec-17.
@@ -16,11 +24,29 @@ public class DayDetails {
     double temperatureLow;
     double humidity;
     double windSpeed;
+    @SerializedName("precipProbability")
+    double rainPercentage;
     ArrayList<DetailedWeatherInfo> hoursInfo;
 
     public DayDetails() {
     }
 
+    public Date getDate(){
+        Date date=new Date(time*1000);
+        SimpleDateFormat format=new SimpleDateFormat("EEE, d MMM yyyy");
+        format.setTimeZone(TimeZone.getDefault());
+        format.format(date);
+        return date;
+    }
+
+
+    public double getRainPercentage() {
+        return rainPercentage;
+    }
+
+    public void setRainPercentage(double rainPercentage) {
+        this.rainPercentage = rainPercentage;
+    }
 
     public long getTime() {
         return time;

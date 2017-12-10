@@ -1,33 +1,277 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.ramotion.foldingcell.FoldingCell
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.ramotion.foldingcell.FoldingCell xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cell"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clipChildren="false"
     android:clipToPadding="false">
-    <FrameLayout
+
+    <RelativeLayout
         android:id="@+id/cell_content_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/holo_green_dark"
+        android:layout_height="580dp"
         android:visibility="gone">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="250dp" />
-    </FrameLayout>
 
-    <FrameLayout
-        android:id="@+id/cell_title_view"
+        <android.support.v7.widget.CardView
+            android:id="@+id/headlineContent"
+            android:layout_width="match_parent"
+            android:layout_height="100dp">
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <ImageView
+                    android:id="@+id/iconIV_content"
+                    android:layout_width="34dp"
+                    android:layout_height="33dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/timezoneTV_content"
+                    app:layout_constraintTop_toBottomOf="@+id/timezoneTV_content"
+                    app:layout_constraintVertical_bias="0.0"
+                    app:srcCompat="@drawable/ic_001_wind" />
+
+                <TextView
+                    android:id="@+id/timezoneTV_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Jerusalem, Israel"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/dateTV_content"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/tempTV_content"
+                    android:layout_width="44dp"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="36dp"
+                    android:gravity="center"
+                    android:text="°"
+                    app:layout_constraintBottom_toBottomOf="@+id/iconIV_content"
+                    app:layout_constraintEnd_toStartOf="@+id/iconIV_content"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/timezoneTV_content"
+                    app:layout_constraintTop_toTopOf="@+id/iconIV_content"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <TextView
+                    android:id="@+id/dateTV_content"
+                    android:layout_width="107dp"
+                    android:layout_height="18dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="10/12/1997"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.045"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.0" />
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="28dp"
+                    android:layout_height="30dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintBottom_toTopOf="@+id/imageView3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/timezoneTV_content"
+                    app:srcCompat="@drawable/ic_010_rain_precentage" />
+
+                <ImageView
+                    android:id="@+id/imageView3"
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iconIV_content"
+                    app:layout_constraintEnd_toEndOf="@+id/imageView2"
+                    app:layout_constraintStart_toStartOf="@+id/imageView2"
+                    app:srcCompat="@drawable/ic_011_humidity_precentage" />
+
+                <TextView
+                    android:id="@+id/rainTV_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="8dp"
+                    android:gravity="center"
+                    android:text="34"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView2"
+                    app:layout_constraintStart_toEndOf="@+id/imageView2"
+                    app:layout_constraintTop_toTopOf="@+id/imageView2" />
+
+                <TextView
+                    android:id="@+id/humidityTV_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:gravity="center"
+                    android:text="34"
+                    app:layout_constraintBottom_toBottomOf="@+id/imageView3"
+                    app:layout_constraintStart_toStartOf="@+id/rainTV_content"
+                    app:layout_constraintTop_toTopOf="@+id/imageView3"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/summaryTV_content"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="TextView"
+                    app:layout_constraintBottom_toBottomOf="@+id/dateTV_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/dateTV_content"
+                    app:layout_constraintTop_toTopOf="@+id/dateTV_content" />
+
+            </android.support.constraint.ConstraintLayout>
+        </android.support.v7.widget.CardView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/hourlyList"
+            android:layout_width="match_parent"
+            android:layout_height="480dp"
+            android:layout_below="@id/headlineContent"></android.support.v7.widget.RecyclerView>
+    </RelativeLayout>
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/headline"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary">
+        android:layout_height="100dp"
+        android:visibility="visible"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp">
 
-        <TextView
+        <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:background="@android:color/holo_blue_dark" />
-    </FrameLayout>
+            android:layout_height="match_parent">
+
+
+            <ImageView
+                android:id="@+id/iconIV_headline"
+                android:layout_width="34dp"
+                android:layout_height="33dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/timezoneTV_headline"
+                app:layout_constraintTop_toBottomOf="@+id/timezoneTV_headline"
+                app:layout_constraintVertical_bias="0.0"
+                app:srcCompat="@drawable/ic_001_wind" />
+
+            <TextView
+                android:id="@+id/timezoneTV_headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Jerusalem, Israel"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.37"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/dateTV_headline"
+                app:layout_constraintVertical_bias="0.179" />
+
+            <TextView
+                android:id="@+id/tempTV_headline"
+                android:layout_width="44dp"
+                android:layout_height="0dp"
+                android:layout_marginEnd="36dp"
+                android:gravity="center"
+                android:text="°"
+                app:layout_constraintBottom_toBottomOf="@+id/iconIV_headline"
+                app:layout_constraintEnd_toStartOf="@+id/iconIV_headline"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/timezoneTV_headline"
+                app:layout_constraintTop_toTopOf="@+id/iconIV_headline"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/dateTV_headline"
+                android:layout_width="107dp"
+                android:layout_height="18dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:text="10/12/1997"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.052"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/imageView2_headline"
+                android:layout_width="28dp"
+                android:layout_height="30dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toTopOf="@+id/imageView3_headline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/timezoneTV_headline"
+                app:srcCompat="@drawable/ic_010_rain_precentage" />
+
+            <ImageView
+                android:id="@+id/imageView3_headline"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                app:layout_constraintBottom_toBottomOf="@+id/iconIV_headline"
+                app:layout_constraintEnd_toEndOf="@+id/imageView2_headline"
+                app:layout_constraintStart_toStartOf="@+id/imageView2_headline"
+                app:srcCompat="@drawable/ic_011_humidity_precentage" />
+
+            <TextView
+                android:id="@+id/rainTV_headline"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="34"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView2_headline"
+                app:layout_constraintStart_toEndOf="@+id/imageView2_headline"
+                app:layout_constraintTop_toTopOf="@+id/imageView2_headline" />
+
+            <TextView
+                android:id="@+id/humidityTV_headline"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:gravity="center"
+                android:text="34"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView3_headline"
+                app:layout_constraintStart_toStartOf="@+id/rainTV_headline"
+                app:layout_constraintTop_toTopOf="@+id/imageView3_headline"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <TextView
+                android:id="@+id/summaryTV_headline"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toTopOf="@+id/imageView2_headline"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/dateTV_headline" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
+
 
 </com.ramotion.foldingcell.FoldingCell>

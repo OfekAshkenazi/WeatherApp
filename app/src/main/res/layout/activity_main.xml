@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.android.myapplication.MainActivity">
-    <include layout="@layout/days_list_item"
-        android:id="@+id/cell"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/daysList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 </android.support.constraint.ConstraintLayout>

@@ -55,6 +55,7 @@ public class SkyDarkRetHelper {
             public void onResponse(Call<WeatherInfo> call, Response<WeatherInfo> response) {
                 weatherInfo[0] =response.body();
                 Log.v("response update:  ", "response received OK");
+                Log.v("response URL:  ", String.valueOf(call.request().url()));
                 info = weatherInfo[0];
                 isLoaded=true;
             }
@@ -93,12 +94,7 @@ public class SkyDarkRetHelper {
             long startTime, endTime;
             DayDetails currentDay = info.dailyResult.days.get(i);
             startTime = currentDay.getTime();
-            if (i >= info.dailyResult.days.size() - 1) {
-                endTime = startTime + (24 * 36000);
-            } else {
-                DayDetails nextDay = info.dailyResult.days.get(i + 1);
-                endTime = nextDay.getTime();
-            }
+            endTime=startTime+(24*3600);
             currentDay.setHoursInfo(getCurrentDayHourlyInfo(currentDay.getTime(), endTime));
             days.add(currentDay);
         }

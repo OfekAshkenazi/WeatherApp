@@ -4,6 +4,10 @@ import android.graphics.Color;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.LinearSnapHelper;
+import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SnapHelper;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -13,6 +17,7 @@ import com.ramotion.foldingcell.FoldingCell;
 import java.util.ArrayList;
 import java.util.Date;
 
+import Adapters.DaysListAdapter;
 import DarkSkyService.Entities.DayDetails;
 import DarkSkyService.SkyDarkRetHelper;
 import DarkSkyService.SkyDarkService;
@@ -27,22 +32,23 @@ public class MainActivity extends AppCompatActivity implements LoadDataTask.OnWe
     double lat=32.5165219;
     double lng=35.4287508;
     private SkyDarkRetHelper helper;
-    ArrayList<DayDetails> weekDetails;
-    FoldingCell cell;
+    DaysListAdapter adapter;
+    RecyclerView daysList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        LoadDataTask task=new LoadDataTask();
-//        task.execute(new Double[]{lat,lng});
-        cell=findViewById(R.id.cell);
-        cell.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cell.toggle(false);
-                cell.initialize(30, 1000, Color.DKGRAY, 2);
-            }
-        });
+        LoadDataTask task=new LoadDataTask(this);
+        task.execute(new Double[]{lat,lng});
+        setViews();
+        daysList.setClipToPadding(true);
+    }
+
+    private void setViews() {
+        daysList=findViewById(R.id.daysList);
+        daysList.setLayoutManager(new LinearLayoutManager(this));
+        SnapHelper helper=new LinearSnapHelper();
+        helper.attachToRecyclerView(daysList);
     }
 
     @Override
@@ -52,7 +58,8 @@ public class MainActivity extends AppCompatActivity implements LoadDataTask.OnWe
 
     @Override
     public void onDataLoaded(ArrayList<DayDetails> days) {
-
+        adapter=new DaysListAdapter(days);
+        daysList.setAdapter(adapter);
     }
 }
 
@@ -60,6 +67,11 @@ public class MainActivity extends AppCompatActivity implements LoadDataTask.OnWe
 class LoadDataTask extends AsyncTask<Double,Integer,ArrayList<DayDetails>>{
 
     private SkyDarkRetHelper helper;
+    private OnWeatherDataLoadedListener listener;
+
+    public LoadDataTask(OnWeatherDataLoadedListener listener) {
+        this.listener = listener;
+    }
 
     @Override
     protected ArrayList<DayDetails> doInBackground(Double... coordinates) {
@@ -73,10 +85,7 @@ class LoadDataTask extends AsyncTask<Double,Integer,ArrayList<DayDetails>>{
 
     @Override
     protected void onPostExecute(ArrayList<DayDetails> days) {
-        for (DayDetails day:days){
-            Date date=new Date(day.getTime()*1000);
-            Log.v("Days:   ",date.toString());
-        }
+        listener.onDataLoaded(days);
     }
     interface OnWeatherDataLoadedListener{
         void onDataLoaded(ArrayList<DayDetails> days);

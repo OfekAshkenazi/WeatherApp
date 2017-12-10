@@ -18,7 +18,7 @@ public class WeatherInfo {
     @SerializedName("longitude")
     double lng;
     @SerializedName("timezone")
-    String timeZone;
+    public static String timeZone;
     @SerializedName("currently")
     DetailedWeatherInfo currently;
     @SerializedName("hourly")

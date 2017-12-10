@@ -2,6 +2,10 @@ package DarkSkyService.Entities;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 public class DetailedWeatherInfo {
     long time;
     String summary;
@@ -14,9 +18,15 @@ public class DetailedWeatherInfo {
     public DetailedWeatherInfo() {
 
     }
-
-    public long getTime() {
+    public long getTime(){
         return time;
+    }
+    public Date getDate() {
+        Date date=new Date(time*1000);
+        SimpleDateFormat format=new SimpleDateFormat("EEE, d MMM yyyy");
+        format.setTimeZone(TimeZone.getDefault());
+        format.format(date);
+        return date;
     }
 
     public void setTime(long time) {
