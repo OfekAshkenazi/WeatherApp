@@ -22,6 +22,7 @@ public class DayDetails {
     long sunsetTime;
     double temperatureHigh;
     double temperatureLow;
+    @SerializedName("humidity")
     double humidity;
     double windSpeed;
     @SerializedName("precipProbability")

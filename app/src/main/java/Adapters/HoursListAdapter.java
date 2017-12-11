@@ -38,18 +38,20 @@ public class HoursListAdapter extends RecyclerView.Adapter<HoursListAdapter.Hour
     public void onBindViewHolder(HourVH holder, int position) {
         DetailedWeatherInfo hour=data.get(position);
         Date date=hour.getDate();
-        int dateHours= date.getHours()+2;
-        if (dateHours>=24){
-            dateHours-=24;
-        }
-        String dateMin;
+
+
+        String dateMin,dateHours;
+        if (date.getHours()<10)
+            dateHours='0'+ String.valueOf(date.getHours());
+        else
+            dateHours= String.valueOf(date.getHours());
         if (date.getMinutes()<10){
             dateMin='0' + String.valueOf(date.getMinutes());
         }
         else {
             dateMin= String.valueOf(date.getMinutes());
         }
-        holder.timeTV.setText(""+dateHours+':'+dateMin);
+        holder.timeTV.setText(dateHours+':'+dateMin);
         holder.icon.setImageResource(getResultIcon(hour.getIcon()));
         holder.tempTV.setText(String.valueOf((int)hour.getTemperature())+ (char) 0x00B0);
         holder.summaryTV.setText(hour.getSummary());

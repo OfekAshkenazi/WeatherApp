@@ -2,11 +2,12 @@ package DarkSkyService.Entities;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.TimeZone;
 
-public class DetailedWeatherInfo {
+public class DetailedWeatherInfo implements Serializable {
     long time;
     String summary;
     String icon;

@@ -18,7 +18,7 @@ public class WeatherInfo {
     @SerializedName("longitude")
     double lng;
     @SerializedName("timezone")
-    public static String timeZone;
+    String timeZone;
     @SerializedName("currently")
     DetailedWeatherInfo currently;
     @SerializedName("hourly")
@@ -26,6 +26,53 @@ public class WeatherInfo {
     @SerializedName("daily")
     DailyResult dailyResult;
 
+    public double getLat() {
+        return lat;
+    }
+
+    public void setLat(double lat) {
+        this.lat = lat;
+    }
+
+    public double getLng() {
+        return lng;
+    }
+
+    public void setLng(double lng) {
+        this.lng = lng;
+    }
+
+    public String getTimeZone() {
+        return timeZone;
+    }
+
+    public void setTimeZone(String timeZone) {
+        timeZone = timeZone;
+    }
+
+    public DetailedWeatherInfo getCurrently() {
+        return currently;
+    }
+
+    public void setCurrently(DetailedWeatherInfo currently) {
+        this.currently = currently;
+    }
+
+    public HourlyResult getHourlyResult() {
+        return hourlyResult;
+    }
+
+    public void setHourlyResult(HourlyResult hourlyResult) {
+        this.hourlyResult = hourlyResult;
+    }
+
+    public DailyResult getDailyResult() {
+        return dailyResult;
+    }
+
+    public void setDailyResult(DailyResult dailyResult) {
+        this.dailyResult = dailyResult;
+    }
 
     class HourlyResult{
         @SerializedName("data")
@@ -42,6 +89,15 @@ public class WeatherInfo {
     class DailyResult{
         @SerializedName("data")
         ArrayList<DayDetails> days;
+        String timezone;
+
+        public String getTimezone() {
+            return timezone;
+        }
+
+        public void setTimezone(String timezone) {
+            this.timezone = timezone;
+        }
 
         public ArrayList<DayDetails> getDays() {
             return days;

@@ -57,6 +57,7 @@ public class SkyDarkRetHelper {
                 Log.v("response update:  ", "response received OK");
                 Log.v("response URL:  ", String.valueOf(call.request().url()));
                 info = weatherInfo[0];
+                MainActivity.timezone=info.timeZone;
                 isLoaded=true;
             }
 
